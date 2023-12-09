@@ -5,6 +5,7 @@ import (
 	"database/sql"
 	"errors"
 	"github.com/Torebekov/shop-back/config"
+	"github.com/Torebekov/shop-back/internal/clients/auth"
 	"github.com/Torebekov/shop-back/internal/controller"
 	core "github.com/Torebekov/shop-back/internal/core"
 	"github.com/Torebekov/shop-back/modules/logger"
@@ -77,6 +78,7 @@ func Start(ctx context.Context) {
 			cfg,
 			sqlDB,
 		),
+		auth.New("http://back-end-auth:8081/v1/auth"),
 	)
 	err = srv.Run("8080")
 	if err != nil {

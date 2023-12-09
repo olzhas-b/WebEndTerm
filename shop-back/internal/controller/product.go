@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"github.com/Torebekov/shop-back/internal/helper"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"
@@ -17,6 +18,7 @@ func (srv *Server) GetProducts(c *gin.Context) {
 	results, err := srv.core.Product().List(
 		searchText,
 		categoryID,
+		helper.GetUser(c),
 	)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})

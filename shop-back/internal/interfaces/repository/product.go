@@ -5,5 +5,5 @@ import (
 )
 
 type IProduct interface {
-	List(searchText string, categoryID uint64) (products []models.ProductDTO, err error)
+	List(searchText string, categoryID, userID uint64) (products []models.ProductDTO, err error)
 }
