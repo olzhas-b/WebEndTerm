@@ -1,0 +1,120 @@
+### AUTH-api
+
+POST http://0.0.0.0:8081/v1/auth/sign-up
+Content-Type: application/json
+
+{
+  "login":    "login",
+  "password": "password"
+}
+
+###
+
+POST http://0.0.0.0:8081/v1/auth/sign-in
+Content-Type: application/json
+
+{
+  "login":    "user",
+  "password": "user"
+}
+
+###
+
+POST http://0.0.0.0:8081/v1/auth/sign-out
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDIxNzQxMTQsImlhdCI6MTcwMjEzODExNCwiaWQiOjIsInVzZXJUeXBlIjoiVVNFUiJ9.qQanuUtxCs3pu7AVOSjIozji-FYxO8wfKb3ZI47whxg
+
+{}
+
+###
+POST http://0.0.0.0:8081/v1/auth/refresh
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDIxNjE1MzMsImlhdCI6MTcwMjEyNTUzMywiaWQiOjEsInVzZXJUeXBlIjoiIn0.KZIW7UdJ0LU2vQfz6FOJff6H2ei8sz7MkH1gVIrdxuE
+
+{}
+
+###
+POST http://0.0.0.0:8081/v1/auth/check
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDIxNzA1MTUsImlhdCI6MTcwMjEzNDUxNSwiaWQiOjEsInVzZXJUeXBlIjoiVVNFUiJ9.AKUIq2BMHBaPA_sh8z4YHGHcAM6cDeOZ1u66x69eiEg
+
+{}
+
+
+
+######################################## SHOP-API
+
+### PRODUCTS
+
+GET http://0.0.0.0:8080/api/v1/product?categoryID=1&search=
+Content-Type: application/json
+#Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDIxNzA1MTUsImlhdCI6MTcwMjEzNDUxNSwiaWQiOjEsInVzZXJUeXBlIjoiVVNFUiJ9.AKUIq2BMHBaPA_sh8z4YHGHcAM6cDeOZ1u66x69eiEg
+
+{}
+
+###
+
+GET http://0.0.0.0:8080/api/v1/product?categoryID=1&search=
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDIxNzU2MjcsImlhdCI6MTcwMjEzOTYyNywiaWQiOjIsInVzZXJUeXBlIjoiVVNFUiJ9.AjKU_yHoRME6iSGH30toR8_zEeoDl5YmEpk6-b6oK1I
+
+{}
+
+###
+
+POST http://0.0.0.0:8080/api/v1/product
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDIxODA0NTQsImlhdCI6MTcwMjE0NDQ1NCwiaWQiOjEsInVzZXJUeXBlIjoiQURNSU4ifQ.uP-i-vPBxWMiAg5ABqerd2A63I-C_5zpgBxcuAyuKJo
+
+{
+  "name": "xiaomi",
+  "categoryID": 1,
+  "image": "https://xiaomi.jpg",
+  "price": 500
+}
+
+
+###
+
+DELETE http://0.0.0.0:8080/api/v1/product/34
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDIxNzQ1NDEsImlhdCI6MTcwMjEzODU0MSwiaWQiOjEsInVzZXJUeXBlIjoiQURNSU4ifQ.xCOuo9U0qNgqoE_ve8VgOK5O7nwy7kg0VxYRAwMezbE
+
+
+### FAVORITE
+
+GET http://0.0.0.0:8080/api/v1/product/favorite
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDIxNzU2MjcsImlhdCI6MTcwMjEzOTYyNywiaWQiOjIsInVzZXJUeXBlIjoiVVNFUiJ9.AjKU_yHoRME6iSGH30toR8_zEeoDl5YmEpk6-b6oK1I
+
+###
+
+POST http://0.0.0.0:8080/api/v1/product/favorite/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDIxNzU2MjcsImlhdCI6MTcwMjEzOTYyNywiaWQiOjIsInVzZXJUeXBlIjoiVVNFUiJ9.AjKU_yHoRME6iSGH30toR8_zEeoDl5YmEpk6-b6oK1I
+
+###
+
+DELETE http://0.0.0.0:8080/api/v1/product/favorite/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDIxNzU2MjcsImlhdCI6MTcwMjEzOTYyNywiaWQiOjIsInVzZXJUeXBlIjoiVVNFUiJ9.AjKU_yHoRME6iSGH30toR8_zEeoDl5YmEpk6-b6oK1I
+
+
+### CART
+
+
+GET http://0.0.0.0:8080/api/v1/product/cart
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDIxNzU2MjcsImlhdCI6MTcwMjEzOTYyNywiaWQiOjIsInVzZXJUeXBlIjoiVVNFUiJ9.AjKU_yHoRME6iSGH30toR8_zEeoDl5YmEpk6-b6oK1I
+
+###
+
+POST http://0.0.0.0:8080/api/v1/product/cart/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDIxNzU2MjcsImlhdCI6MTcwMjEzOTYyNywiaWQiOjIsInVzZXJUeXBlIjoiVVNFUiJ9.AjKU_yHoRME6iSGH30toR8_zEeoDl5YmEpk6-b6oK1I
+
+###
+
+DELETE http://0.0.0.0:8080/api/v1/product/cart/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDIxNzU2MjcsImlhdCI6MTcwMjEzOTYyNywiaWQiOjIsInVzZXJUeXBlIjoiVVNFUiJ9.AjKU_yHoRME6iSGH30toR8_zEeoDl5YmEpk6-b6oK1I
