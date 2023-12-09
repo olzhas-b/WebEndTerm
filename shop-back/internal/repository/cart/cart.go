@@ -22,7 +22,7 @@ func New(db *sql.DB, ctx context.Context) interfaces.ICart {
 }
 
 func (r *cart) Add(cartModel models.Cart) (err error) {
-	l := logger.WorkLogger.Named("repo.cart.AddFavorite").With(zap.Any("cartModel", cartModel))
+	l := logger.WorkLogger.Named("repo.cart.Add").With(zap.Any("cartModel", cartModel))
 
 	if r.db == nil {
 		l.Error("DB not initialized")
@@ -39,7 +39,7 @@ func (r *cart) Add(cartModel models.Cart) (err error) {
 }
 
 func (r *cart) Remove(cartModel models.Cart) (err error) {
-	l := logger.WorkLogger.Named("repo.cart.AddFavorite").With(zap.Any("cartModel", cartModel))
+	l := logger.WorkLogger.Named("repo.cart.Remove").With(zap.Any("cartModel", cartModel))
 
 	if r.db == nil {
 		l.Error("DB not initialized")
@@ -82,8 +82,7 @@ func (r *cart) List(userID uint64) (products []models.Product, err error) {
 	}
 	defer rows.Close()
 
-	rows.Next()
-	{
+	for rows.Next() {
 		var productModel models.Product
 		err = rows.Scan(&productModel.ID, &productModel.Name, &productModel.CategoryID, &productModel.Image, &productModel.Price)
 		if err != nil {

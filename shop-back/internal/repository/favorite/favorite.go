@@ -22,7 +22,7 @@ func New(db *sql.DB, ctx context.Context) interfaces.IFavorite {
 }
 
 func (r *favorite) Add(favoriteModel models.Favorite) (err error) {
-	l := logger.WorkLogger.Named("repo.favorite.AddFavorite").With(zap.Any("favoriteModel", favoriteModel))
+	l := logger.WorkLogger.Named("repo.favorite.Add").With(zap.Any("favoriteModel", favoriteModel))
 
 	if r.db == nil {
 		l.Error("DB not initialized")
@@ -39,7 +39,7 @@ func (r *favorite) Add(favoriteModel models.Favorite) (err error) {
 }
 
 func (r *favorite) Remove(favoriteModel models.Favorite) (err error) {
-	l := logger.WorkLogger.Named("repo.favorite.AddFavorite").With(zap.Any("favoriteModel", favoriteModel))
+	l := logger.WorkLogger.Named("repo.favorite.Remove").With(zap.Any("favoriteModel", favoriteModel))
 
 	if r.db == nil {
 		l.Error("DB not initialized")
@@ -82,8 +82,7 @@ func (r *favorite) List(userID uint64) (products []models.Product, err error) {
 	}
 	defer rows.Close()
 
-	rows.Next()
-	{
+	for rows.Next() {
 		var productModel models.Product
 		err = rows.Scan(&productModel.ID, &productModel.Name, &productModel.CategoryID, &productModel.Image, &productModel.Price)
 		if err != nil {

@@ -36,8 +36,7 @@ func (r *category) List() (categories []models.Category, err error) {
 	}
 	defer rows.Close()
 
-	rows.Next()
-	{
+	for rows.Next() {
 		var categoryModel models.Category
 		err = rows.Scan(&categoryModel.ID, &categoryModel.Name)
 		if err != nil {

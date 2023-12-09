@@ -2,6 +2,7 @@ package controller
 
 import (
 	"github.com/gin-gonic/gin"
+	"log"
 	"net/http"
 )
 
@@ -13,6 +14,7 @@ const (
 func (s *Server) AuthMiddleware(scope string, mustHave bool) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		authHeader := c.GetHeader("Authorization")
+		log.Println(authHeader)
 
 		if mustHave && authHeader == "" {
 			c.Status(http.StatusUnauthorized)
@@ -25,6 +27,7 @@ func (s *Server) AuthMiddleware(scope string, mustHave bool) gin.HandlerFunc {
 		}
 
 		auth, err := s.auth.GetAuth(c, authHeader)
+		log.Println(auth, err)
 		if err != nil {
 			c.Status(http.StatusInternalServerError)
 			return

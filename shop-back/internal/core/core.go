@@ -5,6 +5,7 @@ import (
 	"database/sql"
 	"github.com/Torebekov/shop-back/config"
 	irepo "github.com/Torebekov/shop-back/internal/interfaces/repository"
+	"github.com/Torebekov/shop-back/internal/repository/cart"
 	"github.com/Torebekov/shop-back/internal/repository/category"
 	"github.com/Torebekov/shop-back/internal/repository/favorite"
 	"github.com/Torebekov/shop-back/internal/repository/product"
@@ -19,7 +20,7 @@ type Core struct {
 	productRepo  irepo.IProduct
 	categoryRepo irepo.ICategory
 	favoriteRepo irepo.IFavorite
-	cartRepo irepo.ICart
+	cartRepo     irepo.ICart
 }
 
 func New(
@@ -39,7 +40,9 @@ func New(
 func (s *Core) InitRepositories() *Core {
 	return s.
 		InitProduct().
-		InitCategory()
+		InitCategory().
+		InitFavorite().
+		InitCart()
 }
 
 func (s *Core) InitProduct() *Core {
@@ -49,6 +52,11 @@ func (s *Core) InitProduct() *Core {
 
 func (s *Core) InitCategory() *Core {
 	s.categoryRepo = category.New(s.sqlDB, s.ctx)
+	return s
+}
+
+func (s *Core) InitCart() *Core {
+	s.cartRepo = cart.New(s.sqlDB, s.ctx)
 	return s
 }
 

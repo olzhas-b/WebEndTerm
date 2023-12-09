@@ -36,6 +36,9 @@ func (s *Server) Run(port string) error {
 	productRouter := v1.Group("product")
 	{
 		productRouter.GET("", s.AuthMiddleware(user, false), s.GetProducts)
+		productRouter.GET("/:id", s.GetProduct)
+		productRouter.POST("", s.AuthMiddleware(admin, true), s.AddProduct)
+		productRouter.DELETE("/:id", s.AuthMiddleware(admin, true), s.RemoveProduct)
 
 		favoriteRouter := productRouter.Group("favorite")
 		favoriteRouter.GET("", s.AuthMiddleware(user, true), s.GetFavorite)
@@ -49,12 +52,6 @@ func (s *Server) Run(port string) error {
 	}
 
 	v1.GET("category", s.AuthMiddleware(user, false), s.GetCategories)
-
-	userRouter := v1.Group("user")
-	{
-		userRouter.GET("")
-		userRouter.PUT("")
-	}
 
 	return http.ListenAndServe(":"+port, router)
 }
